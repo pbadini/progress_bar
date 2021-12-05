@@ -34,7 +34,13 @@ class ProgressBar:
 
 - The process parameter is the message that will be printed before the bar, this paramter must have a place holder for a number
 
-- You cran create more than one progress bar with the parameter num_of_bars, when using more than one bar you have to pass the bar you are using in the second parameter of the **show()** method
+- You can create more than one progress bar with the parameter **num_of_bars**, when using more than one bar you can determine the bar you are using by passing the second parameter of the **show()** method or by iterating through the ProgressBar Object
+```python
+bars = ProgressBar(num_of_bars = 5)
+for bar in bars:
+  bar.show(percent)
+```
+
 
 For the code: 
 ```python
