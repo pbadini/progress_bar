@@ -23,6 +23,7 @@ class ProgressBar:
     self.LINE_DOWN = '\u001b[{}E'
     self.HIDE_CURSOR = '\u001b[?25l'
     self.SHOW_CURSOR = '\u001b[?25h'
+    self.END_OF_LINE = '\u001b[0K'
     return
 
   def __len__(self):
@@ -94,7 +95,7 @@ class ProgressBar:
     if percent > 100: percent = 100
     self.__create_space()
     self.__go_to_pos(bar)
-    sys.stdout.write(self.__get_process_string(bar) + self.__get_bar_string(percent) + self.__get_percent_string(percent))
+    sys.stdout.write(self.__get_process_string(bar) + self.__get_bar_string(percent) + self.__get_percent_string(percent) + self.END_OF_LINE)
     sys.stdout.flush()
     self.__go_to_end(bar)
     return
