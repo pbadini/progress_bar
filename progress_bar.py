@@ -21,6 +21,8 @@ class ProgressBar:
     self.BACKGROUND = self.__get_color(background_color) + background + self.RESET_COLOR
     self.LINE_UP = '\u001b[{}F'
     self.LINE_DOWN = '\u001b[{}E'
+    self.HIDE_CURSOR = '\u001b[?25l'
+    self.SHOW_CURSOR = '\u001b[?25h'
     return
 
   def __len__(self):
@@ -58,12 +60,14 @@ class ProgressBar:
     return
 
   def __mov_cursor_up(self, lines):
+    sys.stdout.write(self.HIDE_CURSOR)
     sys.stdout.write(self.LINE_UP.format(lines))
     sys.stdout.flush()
     return
 
   def __mov_cursor_down(self, lines):
     sys.stdout.write(self.LINE_DOWN.format(lines))
+    sys.stdout.write(self.SHOW_CURSOR)
     sys.stdout.flush()
     return
   
