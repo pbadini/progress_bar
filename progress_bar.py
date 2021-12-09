@@ -115,7 +115,28 @@ class ProgressBar:
     self.__go_to_end(bar)
     return
 
-    
+  def show_error(self, error_msg, bar = -1, color = 'red'):
+    if bar < 0:
+      bar = self.current_bar - 1
+
+    self.__create_space()
+    self.__go_to_pos(bar)
+    sys.stdout.write(self.__get_process_string(bar) + self.__get_color(color) + error_msg + self.RESET_COLOR + self.END_OF_LINE)
+    sys.stdout.flush()
+    self.__go_to_end(bar)
+    return
+  
+  def show_success(self, error_msg, bar = -1, color = 'green'):
+    if bar < 0:
+      bar = self.current_bar - 1
+
+    self.__create_space()
+    self.__go_to_pos(bar)
+    sys.stdout.write(self.__get_process_string(bar) + self.__get_color(color) + error_msg + self.RESET_COLOR + self.END_OF_LINE)
+    sys.stdout.flush()
+    self.__go_to_end(bar)
+    return
+
 
 
 if __name__ ==  '__main__':
